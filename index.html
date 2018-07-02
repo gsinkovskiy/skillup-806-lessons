@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Заголовок вкладки</title>
+    <style>
+        td, th {
+            border: 1px solid gray;
+        }
+    </style>
 </head>
 <body>
-    Hello, world!
+    <h1>Заголовок 1</h1>
+    <p>Hello, world!</p>
+    <h1>Заголовок 1 (2)</h1>
+    <!--
+    <h6>Заголовок 6</h6>
+    -->
+    <p><a href="page.html" target="_blank">Переход на вторую страницу</a></p>
+    <p><a href="https://google.com/search?q=php">Про php</a></p>
+    <p>
+        Второй абзац &lt;
+        <a href="https://google.com">Ссылка на google</a>
+        <a href="https://php.net"><img src="images/php.jpeg"></a>
+        Lorem <b>ipsum dolor sit amet</b>, <i>consectetur adipisicing</i> elit. <strong>Beatae dolor</strong> dolores<br>
+    </p>
+
+    <div>
+        Содержимое div. <span>Текст, который можно выделить.</span>
+    </div>
+
+    <h2>Таблица</h2>
+    <table>
+        <caption>Информация про таблицы</caption>
+        <thead>
+            <tr>
+                <th>Столбец 1</th>
+                <th>Столбец 2</th>
+                <th>Столбец 3</th>
+                <th>Столбец 4</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td rowspan="2">Ячейка 1.1</td>
+                <td>Ячейка 1.2</td>
+                <td colspan="2">Ячейка 1.3</td>
+            </tr>
+            <tr>
+                <td>Ячейка 2.2</td>
+                <td>Ячейка 2.3</td>
+                <td>Ячейка 2.4</td>
+            </tr>
+            <tr>
+                <td>Ячейка 3.1</td>
+                <td>Ячейка 3.2</td>
+                <td>Ячейка 3.3</td>
+                <td>Ячейка 3.4</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Итого</td>
+                <td>2000</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <h2>Список</h2>
+    <ol>
+        <li>Первый пункт списка. Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.Первый пункт списка.</li>
+        <li>Второй пункт списка.
+            <img src="https://www.diabetesfoodhub.org/system/thumbs/system/images/recipes/RecId_907_Dannon_FoilWrapVeg_041618_2959761669.jpg">
+        </li>
+        <li>Третий пункт списка.
+            <ol>
+                <li>Первый пункт третьего пункта списка.</li>
+                <li>Второй пункт третьего пункта списка.</li>
+                <li>Третий пункт третьего пункта списка.</li>
+            </ol>
+        </li>
+        <li>Четвертый пункт списка.</li>
+    </ol>
+
+    <dl>
+        <dt>Слово</dt>
+        <dd>Описание слова</dd>
+
+        <dt>Слово</dt>
+        <dd>Описание слова</dd>
+    </dl>
 </body>
 </html>
