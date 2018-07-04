@@ -1,0 +1,25 @@
+/* комментарий */
+p {
+	color: red;
+}
+
+p.par1 {
+	font-size: 150%;
+}
+
+.par1 {
+	text-decoration: underline;
+}
+
+li {
+	color: blue;
+	text-transform: uppercase;
+}
+
+#Клиенты_и_серверы {
+	background-color: gray;
+}
+
+p.par1 strong {
+	background-color: lawngreen;
+}
