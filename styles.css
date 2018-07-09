@@ -1,25 +1,17 @@
-/* комментарий */
-p {
-	color: red;
+.products > div {
+	margin-bottom: 20px;
 }
 
-p.par1 {
-	font-size: 150%;
+body {
+	padding-top: 56px;
 }
 
-.par1 {
-	text-decoration: underline;
+.widescreen {
+	display: none;
 }
 
-li {
-	color: blue;
-	text-transform: uppercase;
-}
-
-#Клиенты_и_серверы {
-	background-color: gray;
-}
-
-p.par1 strong {
-	background-color: lawngreen;
+@media (min-width: 800px) and (max-width: 1000px) {
+	.widescreen {
+		display: block;
+	}
 }
