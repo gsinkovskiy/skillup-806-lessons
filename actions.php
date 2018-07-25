@@ -1,12 +1,19 @@
 <?php
 
+require_once __DIR__ . '/classes/Form.php';
+require_once __DIR__ . '/classes/EmailFormField.php';
+require_once __DIR__ . '/classes/PasswordFormField.php';
+
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 
 define('USERS_FILENAME', __DIR__ . '/users.txt');
 
-$errors = [];
-$data = [];
+$form = new Form('post');
+$form->addField(new FormField('Имя', 'first_name'));
+$form->addField(new FormField('Фамилия', 'last_name'));
+$form->addField(new EmailFormField('Email', 'email'));
+$form->addField(new PasswordFormField('Пароль', 'password'));
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	processRequest();
@@ -14,24 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 function processRequest()
 {
-	global $errors, $data;
+	global $form;
 
-	$fields = ['first_name', 'last_name', 'email', 'password'];
+	$isValid = $form->processRequest();
 
-	foreach ($fields as $field) {
-		if (empty($_POST[$field])) {
-			$errors[$field] = 'Значение не может быть пустым';
-		}
-
-		$data[$field] = isset($_POST[$field]) ? $_POST[$field] : '';
-	}
-
-	if (mb_strpos($data['email'], '@') === false) {
-		$errors['email'] = 'Email должен содержать символ @';
-	}
-
-	if (count($errors) == 0) {
-		saveUser();
+	if ($isValid) {
+		//saveUser();
 		header('Location: done.html');
 		exit();
 	}
@@ -44,23 +39,5 @@ function saveUser()
 	$file = fopen(USERS_FILENAME, 'a');
 	fputs($file, implode("\t", $data) . "\n");
 	fclose($file);
-}
-
-function getError($field)
-{
-	global $errors;
-
-	if (!empty($errors[$field])) { // проверяем, что ошибка у переданного поля есть
-		return '<p class="error">' . $errors[$field] . '</p>'; // возвращаем ошибку с тегом <p> и классом error
-	}
-
-	return ''; // ошибки нет, возвращаем пустую строку
-}
-
-function getValue($field)
-{
-	global $data;
-
-	return isset($data[$field]) ? $data[$field] : '';
 }
 

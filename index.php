@@ -30,32 +30,10 @@ include __DIR__ . '/actions.php';
 </head>
 <body>
 	<h1>Регистрация</h1>
-	<form method="post">
-		<label>
-			Имя:
-			<input name="first_name" value="<?= getValue('first_name') ?>">
-			<?= getError('first_name') ?>
-		</label>
-
-		<label>
-			Фамилия:
-			<input name="last_name" value="<?= getValue('last_name') ?>">
-			<?= getError('last_name') ?>
-		</label>
-
-		<label>
-			Email:
-			<input type="email" name="email" value="<?= getValue('email') ?>">
-			<?= getError('email') ?>
-		</label>
-
-		<label>
-			Пароль:
-			<input type="password" name="password" value="">
-			<?= getError('password') ?>
-		</label>
+	<?= $form->renderBegin() ?>
+		<?= $form->renderFields() ?>
 
 		<button type="submit">Зарегистрироваться</button>
-	</form>
+	<?= $form->renderEnd() ?>
 </body>
 </html>
