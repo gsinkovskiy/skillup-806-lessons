@@ -1,13 +1,12 @@
 <?php
 
-require_once __DIR__ . '/classes/Form.php';
-require_once __DIR__ . '/classes/EmailFormField.php';
-require_once __DIR__ . '/classes/PasswordFormField.php';
+use Entity\User;
+use Form\EmailFormField;
+use Form\Form;
+use Form\FormField;
+use Form\PasswordFormField;
 
-error_reporting(E_ALL);
-ini_set('display_errors', true);
-
-define('USERS_FILENAME', __DIR__ . '/users.txt');
+require_once __DIR__ . '/init.php';
 
 $form = new Form('post');
 $form->addField(new FormField('Имя', 'first_name'));
@@ -26,18 +25,17 @@ function processRequest()
 	$isValid = $form->processRequest();
 
 	if ($isValid) {
-		//saveUser();
+		$values = $form->getValues();
+		$user = User::createFromArray($values);
+		saveUser($user);
 		header('Location: done.html');
 		exit();
 	}
 }
 
-function saveUser()
+function saveUser(User $user)
 {
-	global $data;
-
 	$file = fopen(USERS_FILENAME, 'a');
-	fputs($file, implode("\t", $data) . "\n");
+	fputs($file, serialize($user) . "\n");
 	fclose($file);
 }
-

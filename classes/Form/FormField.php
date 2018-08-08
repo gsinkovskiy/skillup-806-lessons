@@ -1,4 +1,5 @@
 <?php
+namespace Form;
 
 class FormField
 {
@@ -54,6 +55,14 @@ class FormField
 		}
 
 		return true;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getValue(): string
+	{
+		return $this->value;
 	}
 
 }

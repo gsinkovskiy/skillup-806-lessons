@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/FormField.php';
+namespace Form;
 
 class Form
 {
@@ -55,6 +55,17 @@ class Form
 		}
 
 		return $isValid;
+	}
+
+	public function getValues()
+	{
+		$values = [];
+
+		foreach ($this->fields as $fieldName => $field) {
+			$values[$fieldName] = $field->getValue();
+		}
+
+		return $values;
 	}
 
 }
