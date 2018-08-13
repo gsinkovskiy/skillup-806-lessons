@@ -1,12 +1,15 @@
 <?php
 
+session_save_path(__DIR__);
+session_start();
+
 if (isset($_GET['action'])) {
 	switch ( $_GET['action'] ) {
 		case 'add':
-			setcookie($_GET['name'], $_GET['value'], null, '/');
+			$_SESSION[$_GET['name']] = $_GET['value'];
 			break;
 		case 'delete':
-			setcookie($_GET['name'], '', strtotime('-1 sec'), '/');
+			unset($_SESSION[$_GET['name']]);
 			break;
 	}
 
@@ -18,10 +21,10 @@ if (isset($_GET['action'])) {
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Куки</title>
+	<title>Сессии</title>
 </head>
 <body>
-<h1>Значения в куках</h1>
+<h1>Значения в сессии</h1>
 <table>
 	<tr>
 		<th>Имя</th>
@@ -29,7 +32,7 @@ if (isset($_GET['action'])) {
 		<th>Удалить?</th>
 	</tr>
 
-	<?php foreach ($_COOKIE as $name => $value) { ?>
+	<?php foreach ($_SESSION as $name => $value) { ?>
 		<tr>
 			<td><i><?=$name?></i></td>
 			<td><?=$value?></td>
