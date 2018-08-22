@@ -1,28 +1,32 @@
 <?php
 require_once __DIR__ . '/init.php';
 
-$users = [];
-
-$file = fopen(USERS_FILENAME, 'r');
-
-while (!feof($file)) {
-	$userData = fgets($file);
-	$user = unserialize($userData);
-	$users[] = $user;
-}
-
-fclose($file);
+$sql = 'SELECT * FROM users';
+$users = $pdo->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Список пользователей</title>
+	<title>Title</title>
 </head>
 <body>
-<h1>Список пользователей</h1>
-<pre>
-<?php var_dump($users) ?>
-</pre>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>First name</th>
+		<th>Last name</th>
+		<th>Email</th>
+	</tr>
+
+	<?php while ($user = $users->fetch(PDO::FETCH_ASSOC)) { ?>
+		<tr>
+			<td><?= $user['id'] ?></td>
+			<td><?= $user['first_name'] ?></td>
+			<td><?= $user['last_name'] ?></td>
+			<td><?= $user['email'] ?></td>
+		</tr>
+	<?php } ?>
+</table>
 </body>
 </html>

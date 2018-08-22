@@ -8,4 +8,4 @@ spl_autoload_register(function ($class) {
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 
-define('USERS_FILENAME', __DIR__ . '/serialized-users.txt');
+$pdo = new PDO('mysql:host=localhost;dbname=test;charset=UTF8', 'root', 'root');

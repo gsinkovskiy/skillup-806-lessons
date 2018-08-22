@@ -35,7 +35,15 @@ function processRequest()
 
 function saveUser(User $user)
 {
-	$file = fopen(USERS_FILENAME, 'a');
-	fputs($file, serialize($user) . "\n");
-	fclose($file);
+	global $pdo;
+
+	$sql = 'INSERT INTO users (first_name, last_name, email, password)
+			VALUES (:first_name, :last_name, :email, :password)';
+	$query = $pdo->prepare($sql);
+	$query->execute([
+		'first_name' => $user->getFirstName(),
+		'last_name' => $user->getLastName(),
+		'email' => $user->getEmail(),
+		'password' => $user->getPassword(),
+	]);
 }
